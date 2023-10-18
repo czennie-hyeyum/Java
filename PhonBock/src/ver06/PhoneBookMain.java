@@ -39,7 +39,6 @@ public class PhoneBookMain {
 				String birthDay = scanner.nextLine();
 				
 				PhoneInfo info = null;
-				
 				switch (subChoice) {
 					case SCHOOL:
 						System.out.print("학교: ");
@@ -73,15 +72,15 @@ public class PhoneBookMain {
 				for (int i = 1; i <= 10; i++) {
 					PhoneInfo infoTest = null; 
 							if (i % 2 == 0) {
-								new PhoneInfoSchool ("이름-" + i,
-											         "전번-" + i,
-											         "생일-" + i,
-											         "학교-" + i);
+								infoTest = new PhoneInfoSchool ("이름-" + i,
+											         			"전번-" + i,
+											         			"생일-" + i,
+											         			"학교-" + i);
 							} else {
-								new PhoneInfoCompany ("이름-" + i,
-													  "전번-" + i,
-													  "생일-" + i,
-													  "회사-" + i);
+								infoTest = new PhoneInfoCompany ("이름-" + i,
+													  			 "전번-" + i,
+													  		     "생일-" + i,
+													             "회사-" + i);
 							}
 					book.addInfo(infoTest);
 				}
