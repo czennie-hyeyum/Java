@@ -2,7 +2,7 @@ package prac04;
 
 public class Phone {
 	private String name;
-	private String tel;
+	private String tel; 
 	
 	public Phone(String name, String tel) {
 		this.name = name;

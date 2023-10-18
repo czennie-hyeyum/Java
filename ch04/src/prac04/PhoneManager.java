@@ -16,7 +16,7 @@ public class PhoneManager {
 		System.out.print("인원수>>");
 		int count = scanner.nextInt();
 		phones = new Phone[count];
-	}
+	} 
 	
 	private void inputData() {
 		for (int i = 0; i < phones.length; i++) {
