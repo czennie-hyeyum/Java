@@ -80,7 +80,7 @@ public class PhoneBookMain {
 								infoTest = new PhoneInfoCompany ("이름-" + i,
 													  			 "전번-" + i,
 													  		     "생일-" + i,
-													             "회사-" + i);
+													             "회사-" + i); 
 							}
 					book.addInfo(infoTest);
 				}
