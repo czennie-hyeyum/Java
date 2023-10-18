@@ -17,7 +17,7 @@ public class PhoneManager {
 		int count = scanner.nextInt();
 		phones = new Phone[count];
 	} 
-	
+	 
 	private void inputData() {
 		for (int i = 0; i < phones.length; i++) {
 			System.out.print("이름과 전화번호(번호는 연속적으로 입력)>>");
