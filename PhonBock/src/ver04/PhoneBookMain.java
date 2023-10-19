@@ -14,7 +14,7 @@ public class PhoneBookMain {
 		// scanner.nextInt() - 정수 읽기
 		// scanner.nextLine() - 문자열 읽기
 		
-		System.out.println("===== 전화번호부 ver.03 =====");
+		System.out.println("===== 전화번호부 ver.04 =====");
 		
 		while (true) {
 			showMenu();
