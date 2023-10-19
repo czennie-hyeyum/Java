@@ -1,4 +1,4 @@
-package ver06;
+package ver07;
 
 import java.util.Scanner;
 
