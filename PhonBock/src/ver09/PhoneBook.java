@@ -52,9 +52,9 @@ public class PhoneBook {
 			if(name.equals(searchName)) {
 				return true;
 			}
-		} // for
+		}
 		return false;
-	} // isNameDup
+	}
 	
 	// 입력된 이름 존재 여부 확인
 	public PhoneInfo isExist(String name) {
