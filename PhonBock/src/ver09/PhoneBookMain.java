@@ -17,7 +17,7 @@ public class PhoneBookMain {
 	public static void main(String[] args) {
 		PhoneBook book = new PhoneBook();
 		
-		System.out.println("===== 전화번호부 ver.08 =====");
+		System.out.println("===== 전화번호부 ver.09 =====");
 		String name = "";
 		
 		while (true) {
@@ -108,7 +108,15 @@ public class PhoneBookMain {
 				}
 				
 			case DELETE:
-				break;
+				name = inputName();
+				boolean deleteResult = book.delete(name);
+				
+				if(deleteResult == true) {
+					System.out.println(name + "의 정보가 삭제 되었습니다.");
+				} else {
+					System.out.println(name + "의 정보가 없습니다.");
+				}
+					break;
 				
 			case EXIT:
 				scanner.close();
@@ -148,7 +156,7 @@ public class PhoneBookMain {
 	}
 	
 	public static String searchName() {
-		System.out.print("입력(이름): ");
+		System.out.print("입력(이름)> ");
 		String name = scanner.nextLine();
 		return name;
 	}

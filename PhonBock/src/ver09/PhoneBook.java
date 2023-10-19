@@ -64,11 +64,11 @@ public class PhoneBook {
 			if(name.equals(saveName)) {
 				return info;
 			}
-		} // for
+		} 
 		return null;
-	} // isExist
+	}
 	
-	// 정보 수정
+	// 입력된 이름 정보 수정
 	public void modify(PhoneInfo info) {
 		for(int i = 0; i < index; i++) {
 			if (storage[i].getName().equals(info.getName())) {
@@ -77,10 +77,21 @@ public class PhoneBook {
 		}
 	}
 	
-	
-	// 입력된 정보 삭제
-	public void delete() {
-		
+	// 입력된 이름 정보 삭제
+	public boolean delete(String name) {
+		for(int i = 0; i < index; i++) {
+			String savedName = storage[i].getName();
+			if(name.equals(savedName)) {
+				storage[i] = null;
+				for (int j = i; j < index; j++) {
+					storage[j] = storage[j+1]; 
+				}
+				storage[index-1] = null;
+				index--;
+				return true;
+			}
+		}
+		return false;
 	}
 	
 }
