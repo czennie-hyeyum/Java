@@ -1,4 +1,4 @@
-package ver08;
+package ver09;
 
 public class PhoneBook {
 	private PhoneInfo[] storage = new PhoneInfo[10];
