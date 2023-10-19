@@ -1,0 +1,28 @@
+형변환 - Type Casting(Conversion)
+int i = 0;
+byte b = (byte)i;
+
+return; (돌려주는 것이 없을 경우 아래의 문장들을 실행하지 않고)
+continue; (위 내용 아래의 내용을 반복을 멈추지 않고 계속)
+
+
+is, has
+
+
+[개발자들이 해야 되는 주작업]
+데이터 작업(입력, 수정, 삭제, 조회(검색)) - CUDR
+입력 - Create(C)
+수정 - Update(U)
+삭제 - Delete(D)
+조회 - Read(R)
+우리가 방금 한 것 입력과 조회
+
+
+메서드 오버로딩(Over Load), 생성자
+메서드 오버라이딩(Over ride) - 올라탄다(덮어쓴다) - 메서드 재정의
+
+
+
+
+
+

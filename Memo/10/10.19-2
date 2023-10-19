@@ -1,0 +1,17 @@
+추상(추상화) 클래스
+추상 - 실체가 없다(개념적)
+추상 메서드
+public abstract void move(int x, int y);
+
+추상 클래스 - 객체 생성 불가능, 추상 메서드가 1개라도 있으면 무조건 추상 클래스
+public abstract class 과일 {
+   public abstract void methodA();
+}
+
+new 과일 (안 됨)
+
+과일 과1 = new 사과();
+과일 과2 = new 배();
+과일[] 과일들 = {과1, 과2};
+
+약간 뭔가 있었는데요 없었습니다 느낌
