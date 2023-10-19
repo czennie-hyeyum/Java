@@ -4,10 +4,16 @@ public class PhoneBook {
 	private PhoneInfo[] storage = new PhoneInfo[10];
 	private int index = 0;
 	
-	// 입력된 정보
+	// 저장 용량이 꽉 찼을 때
 	public void addInfo(PhoneInfo info) throws ArrayIndexOutOfBoundsException {
 		storage[index] = info;
 		index++;
+	}
+	
+	// 용량이 부족하면 2배로 늘리기
+	public void expansionInfo(PhoneInfo info) {
+		PhoneInfo[] newStorage = new PhoneInfo[20];
+		storage = newStorage;
 	}
 	
 	// 전체 보여주기
