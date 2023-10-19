@@ -1,0 +1,22 @@
+[PhoneBookMain]
+24행 MenuViewer에 showMenu 출력
+26행 메뉴 선택 번호 입력
+
+29행 choice 조건문 시작
+30행-34행 케이스 1. 입력 선택 후 세부 메뉴 선택 번호 입력
+
+38행 boolean isDup에다가 PhoneBook에 있는 isNameDup 호출
+39행 if(isDup)의 조건 내용은 PhoneBook에 isNameDup의 내용으로
+true일 경우 @@@(으)로 등록된 이름이 있습니다.가 출력되며
+true인 내용은 멈추되 아래의 내용은 반복을 멈추지 않고 계속된다.
+
+49행 PhoneInfo info에 빈값을 부여한다.
+
+51행 subChoice 조건문 시작
+53행 1. 학교 선택 시 학교 이름을 입력 받고
+49행에서 빈값이 부여된 info에 PhoneInfoSchool 내용을 끌고 온다.
+
+59행 2. 회사 선택 시 회사 이름을 입력 받고
+49행에서 빈값이 부여된 info에 PhoneInfoCompany 내용을 끌고 온다.
+
+64행 이것은 예외의 경우인데
