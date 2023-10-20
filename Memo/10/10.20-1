@@ -1,0 +1,30 @@
+Vector<E> List
+ArrayList<E> List
+
+HashMap<K,V> -> {key:vlaue}
+
+lterator<E> - >for ( : )
+
+<> 제네릭 표현 방법
+E - > Element
+
+<p.287 컬렉션>
+목록 - List - 인터페이스
+    Vector, ArrayList, LinkedList - 클래스
+    순서(o), 중복(o)
+    Vector(스레드 구현)
+    ArrayList(스레드 구현 x)
+
+사전 - Map - 인터페이스
+    HashMap - 클래스
+    키-값 1쌍
+    키 중복(x), 값 중복(o)
+    순서(x)
+
+집합 - Set - 인터페이스
+    HashSet - 클래스
+    순서(x), 중복(x)
+    자연수의 집합: 3, 4, 7, ... 3,
+
+;
+
