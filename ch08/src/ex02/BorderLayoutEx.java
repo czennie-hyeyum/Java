@@ -23,7 +23,7 @@ public class BorderLayoutEx extends JFrame {
 	public BorderLayoutEx() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(300, 200);
-		container.setLayout(new BorderLayout(20, 20));
+		container.setLayout(new BorderLayout(5, 5));
 		for(int i = 0; i < texts.length; i++) {
 			container.add(new JButton(texts[i]), positions[i]);
 		}
