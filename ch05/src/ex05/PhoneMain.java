@@ -4,8 +4,7 @@ public class PhoneMain {
 
 	public static void main(String[] args) {
 		// PhoneInterface p1 = new PhoneInterface();
-		// -> Interface는 객체 생성 불가
-		
+		// -> 인터페이스는 객체 생성 불가
 		SmartPhone phone1 = new SmartPhone();
 		phone1.sendCall();
 		phone1.receiveCall();
