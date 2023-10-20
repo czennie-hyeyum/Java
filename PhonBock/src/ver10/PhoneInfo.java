@@ -1,6 +1,6 @@
 package ver10;
 
-public class PhoneInfo {
+public abstract class PhoneInfo {
 	private String name;
 	private String phoneNumber;
 	private String birthDay;

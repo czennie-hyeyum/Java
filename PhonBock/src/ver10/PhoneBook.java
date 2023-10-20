@@ -11,10 +11,9 @@ public class PhoneBook {
 	}
 	
 	// 용량이 부족하면 2배로 늘리기
-	public void expansionInfo(PhoneInfo info) {
-		PhoneInfo[] newStorage = new PhoneInfo[20];
-		storage = newStorage;
-	}
+	
+	
+	
 	
 	// 전체 보여주기
 	public void showAll() {
