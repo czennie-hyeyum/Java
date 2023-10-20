@@ -19,7 +19,6 @@ public class BorderLayoutEx extends JFrame {
 		BorderLayout.CENTER
 	};
 	
-	
 	public BorderLayoutEx() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(300, 200);
