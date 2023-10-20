@@ -17,7 +17,8 @@ public class PhoneBook {
 			*/
 			
 			System.arraycopy(storage, 0, newStorage, 0, storage.length);
-			
+			storage = newStorage;
+			newStorage = null;
 		}
 		storage[index] = info;
 		index++;
