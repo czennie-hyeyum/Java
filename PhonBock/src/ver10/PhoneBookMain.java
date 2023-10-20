@@ -125,7 +125,7 @@ public class PhoneBookMain {
 				break;
 				
 			case INPUT_TEST_DATA:
-				for (int i = 1; i <= 9; i++) {
+				for (int i = 1; i <= 100; i++) {
 					PhoneInfo infoTest = null; 
 							if (i % 2 == 0) {
 								infoTest = new PhoneInfoSchool ("이름-" + i,

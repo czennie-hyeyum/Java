@@ -6,13 +6,22 @@ public class PhoneBook {
 	
 	// 저장 용량이 꽉 찼을 때
 	public void addInfo(PhoneInfo info) throws ArrayIndexOutOfBoundsException {
+		if (index >= storage.length) {
+			PhoneInfo[] newStorage = new PhoneInfo[storage.length * 2];
+			/*
+			for (int i = 0; i < storage.length; i++) {
+				newStorage[i] = storage[i];
+			}
+			storage = newStorage;
+			newStorage = null;
+			*/
+			
+			System.arraycopy(storage, 0, newStorage, 0, storage.length);
+			
+		}
 		storage[index] = info;
 		index++;
 	}
-	
-	// 용량이 부족하면 2배로 늘리기
-	
-	
 	
 	
 	// 전체 보여주기
