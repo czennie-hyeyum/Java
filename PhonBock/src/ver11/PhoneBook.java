@@ -55,7 +55,8 @@ public class PhoneBook {
 	public PhoneInfo isExist(String name) {
 		for(int i = 0; i < vec.size(); i++) {
 			PhoneInfo info = vec.get(i);
-			if(name.equals(info.getName())) {
+			String savedName = info.getName();
+			if (name.equals(savedName)) {
 				return info;
 			}
 		} 
@@ -65,12 +66,9 @@ public class PhoneBook {
 	// 입력된 이름 정보 수정
 	public void modify(PhoneInfo info) {
 		for(int i = 0; i < vec.size(); i++) {
-			PhoneInfo vecInfo = vec.get(i);
-			String vecName = vecInfo.getName();
-			if (vecName.equals(info.getName())) {
-				vecInfo = info;
+			if (vec.get(i).getName().equals(info.getName())) {
 				vec.remove(i);
-				vec.add(vecInfo);
+				vec.add(i, info);
 				break;
 			}
 		}
@@ -79,8 +77,9 @@ public class PhoneBook {
 	// 입력된 이름 정보 삭제
 	public boolean delete(String name) {
 		for(int i = 0; i < vec.size(); i++) {
-			PhoneInfo info = vec.get(i);
-			if(name.equals(info.getName())) {
+			String savedName = vec.get(i).getName();
+			if(name.equals(savedName)) {
+				vec.remove(i);
 				return true;
 			}
 		}
