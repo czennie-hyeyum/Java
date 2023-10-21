@@ -3,7 +3,6 @@ package ex01;
 import java.util.Scanner;
 
 public class ScannerEx {
-	// ex01, ScannerEx 이름 성 
 
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);

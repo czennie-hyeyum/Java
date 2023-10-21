@@ -8,7 +8,7 @@ public class ArithmeticOperator {
 		//
 		Scanner scan = new Scanner(System.in);
 		System.out.print("숫자입력: ");
-		int num = scan.nextInt();
+		int num = scan.nextInt(); 
 
 		if (num % 2 == 0) {
 			System.out.println("짝수입니다.");

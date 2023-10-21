@@ -12,7 +12,7 @@ public class Hello {
 		str = "G:\\workspace\\java\\ch02\\src\\ex01";
 		System.out.println(str);
 		final double PI = 3.141592;
-		double radius = 10;
+		double radius = 10; 
 		double area = PI * radius * radius;
 		System.out.println("면적:" + "area");
 	}

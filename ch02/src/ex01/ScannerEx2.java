@@ -3,7 +3,7 @@ package ex01;
 import java.util.Scanner;
 
 public class ScannerEx2 {
-
+ 
 	public static void main(String[] args) {
 		System.out.print("숫자1: ");
 		Scanner scan = new Scanner(System.in);
