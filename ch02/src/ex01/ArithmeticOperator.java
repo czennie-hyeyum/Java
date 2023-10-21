@@ -14,7 +14,7 @@ public class ArithmeticOperator {
 			System.out.println("짝수입니다.");
 		} else {
 			System.out.println("홀수입니다.");
- 
+  
 		}
 
 		/*숫자입력:
