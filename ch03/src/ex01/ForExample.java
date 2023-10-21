@@ -3,7 +3,7 @@ package ex01;
 public class ForExample {
 
 	public static void main(String[] args) {
-		// for (1.초기식(1번만);2.조건;4.실행후)
+		// for (1.초기식(1번만);2.조건;4.실행후) 111
  
 		// for (조건 참(true)동안) // 제일 많이 쓰이는 것
 		// 횟수를 예상(알) 할 수 있는 경우
