@@ -7,19 +7,14 @@ public class Prac10 {
 	public static void main(String[] args) {
 		// p.89 Prac10 실습 문제 Prac8 변형 문제
 		// if-else 활용
-		// Calculator / nestedif 참고
 
-		// 스캐너 생성
 		Scanner scanner = new Scanner(System.in);
 
-		// 커피 주문하세요>> 출력
 		System.out.print("커피 주문하세요>>");
 		String coffee = scanner.next();
 		int count = scanner.nextInt();
 
 		//에스프레소 2000, 아메리카노 2500, 카푸치노 3000, 카페라떼 3500
-//		System.out.println("coffee" + coffee);
-// 		System.out.println("count" + count);
 
 		switch (coffee) {
 		case "에스프레소":
@@ -42,7 +37,6 @@ public class Prac10 {
 			break;
 		} // switch
 
-		// 스캐너 닫기
 		scanner.close();
 
 	}

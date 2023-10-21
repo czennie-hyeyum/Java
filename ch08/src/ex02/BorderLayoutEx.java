@@ -3,14 +3,15 @@ package ex02;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
-import java.awt.FlowLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
 @SuppressWarnings("serial")
 public class BorderLayoutEx extends JFrame {
 	Container container = getContentPane(); 
+	// 배열 뻐킹
 	String[] texts = {"add", "sub", "mul", "div", "Calculate"};
+	// 스트링 뻐킹
 	String[] positions = {
 		BorderLayout.EAST,
 		BorderLayout.WEST,
@@ -33,5 +34,5 @@ public class BorderLayoutEx extends JFrame {
 	public static void main(String[] args) {
 		new BorderLayoutEx();
 	}
-
+	
 }

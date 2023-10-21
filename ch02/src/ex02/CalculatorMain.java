@@ -16,9 +16,7 @@ public class CalculatorMain {
 
 }
 
-
 class Calculator {
-
 	int add (int m, int n) {
 		return m + n;
 	}

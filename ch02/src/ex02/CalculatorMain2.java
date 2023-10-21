@@ -17,13 +17,9 @@ public class CalculatorMain2 {
 }
 
 class Calculator2 {
-	//데이터
 	int m;
 	int n;
 
-	
-	// 기능
-	
 	int add () {
 		return m + n;
 	}
