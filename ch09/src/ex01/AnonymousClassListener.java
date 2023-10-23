@@ -7,11 +7,13 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 @SuppressWarnings("serial")
 public class AnonymousClassListener extends JFrame {
 	private Container con = getContentPane();
 	private JButton btnAction = new JButton("Action");
+	private JLabel lalHello = new JLabel("Hello");
 
 	public AnonymousClassListener() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -36,7 +38,7 @@ public class AnonymousClassListener extends JFrame {
 						theButton.setText("Action");
 					}
 			}
-		});
+		}); // addActionListener
 		
 		setVisible(true); 
 	}
