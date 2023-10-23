@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="ch02/src"/>
+	<classpathentry kind="src" path="ch03/src"/>
+	<classpathentry kind="src" path="ch04/src"/>
+	<classpathentry kind="src" path="ch05/src"/>
+	<classpathentry kind="src" path="ch06/src"/>
+	<classpathentry kind="src" path="ch07/src"/>
+	<classpathentry kind="src" path="ch08/src"/>
+	<classpathentry kind="src" path="ch09/src"/>
+	<classpathentry kind="src" path="Java/ch02/src"/>
+	<classpathentry kind="src" path="Java/ch03/src"/>
+	<classpathentry kind="src" path="Java/ch04/src"/>
+	<classpathentry kind="src" path="Java/ch05/src"/>
+	<classpathentry kind="src" path="Java/ch06/src"/>
+	<classpathentry kind="src" path="Java/ch07/src"/>
+	<classpathentry kind="src" path="Java/ch08/src"/>
+	<classpathentry kind="src" path="Java/PhonBock/src"/>
+	<classpathentry kind="src" path="Java/Test/src"/>
+	<classpathentry kind="src" path="PhonBock/src"/>
+	<classpathentry kind="src" path="Test/src"/>
+	<classpathentry kind="output" path="Java/PhonBock/bin"/>
+</classpath>
