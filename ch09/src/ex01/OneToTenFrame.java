@@ -10,8 +10,8 @@ import javax.swing.JFrame;
 @SuppressWarnings("serial")
 public class OneToTenFrame extends JFrame {
 	Container con = getContentPane();
-	JButton[] buttons = new JButton[10];
 	MyActionListener lis = new MyActionListener();
+	JButton[] buttons = new JButton[10];
 	
 	public OneToTenFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
