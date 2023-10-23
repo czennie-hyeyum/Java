@@ -28,7 +28,7 @@ public class InnerClassListener extends JFrame {
 	}
 	
 	public static void main(String[] args) {
-		new InnerClassListener();
+		new InnerClassListener(); 
 	}
 	
 	// 내부 클래스 - 멤버처럼 사용하고자 할 때
