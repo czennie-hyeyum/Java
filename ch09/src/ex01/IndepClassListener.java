@@ -22,7 +22,7 @@ public class IndepClassListener extends JFrame {
 		con.add(btnAction);
 		btnAction.addActionListener(lis);
 		
-		setVisible(true);
+		setVisible(true); 
 	}
 	
 	public static void main(String[] args) {
