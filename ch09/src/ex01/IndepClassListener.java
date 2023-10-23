@@ -17,7 +17,7 @@ public class IndepClassListener extends JFrame {
 	public IndepClassListener() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("독립된 클래스로 리스너 만들기");
-		setSize(500, 500);
+		setSize(500, 500); 
 		con.setLayout(new FlowLayout());
 		con.add(btnAction);
 		btnAction.addActionListener(lis);
