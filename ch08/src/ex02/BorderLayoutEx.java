@@ -9,9 +9,7 @@ import javax.swing.JFrame;
 @SuppressWarnings("serial")
 public class BorderLayoutEx extends JFrame {
 	Container container = getContentPane(); 
-	// 배열 뻐킹
 	String[] texts = {"add", "sub", "mul", "div", "Calculate"};
-	// 스트링 뻐킹
 	String[] positions = {
 		BorderLayout.EAST,
 		BorderLayout.WEST,
