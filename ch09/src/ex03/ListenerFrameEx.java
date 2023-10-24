@@ -1,6 +1,8 @@
 package ex03;
 
+import java.awt.Color;
 import java.awt.Container;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -18,8 +20,11 @@ public class ListenerFrameEx extends JFrame
 		setTitle("프레임 리스너 예제");
 		setSize(500, 500);
 		setVisible(true);
+		con.setLayout(new FlowLayout());
 		con.add(button);
+		con.setBackground(Color.LIGHT_GRAY);
 		button.addActionListener(this);
+		
 	}
 	
 	public static void main(String[] args) {
@@ -28,7 +33,17 @@ public class ListenerFrameEx extends JFrame
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		System.out.println("클릭");
+		Object obj = e.getSource();
+		JButton theButton = (JButton)obj;
+		String text = theButton.getText();
+		
+		if(obj == button) {
+			if(text.equals("Click")) {
+				button.setText("클릭");
+			} else if(text.equals("클릭")) {
+				button.setText("Click");
+			}
+		}
 	}
 
 }
