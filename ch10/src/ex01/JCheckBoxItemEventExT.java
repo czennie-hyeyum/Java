@@ -23,7 +23,6 @@ public class JCheckBoxItemEventExT extends JFrame implements ItemListener {
 	private JLabel lblResult = new JLabel("현재 0원 입니다.");
 	private JCheckBox[] boxes = new JCheckBox[names.length]; // {null, null, null}
 	
-	
 	public JCheckBoxItemEventExT() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("아이템 이벤트 예제");
