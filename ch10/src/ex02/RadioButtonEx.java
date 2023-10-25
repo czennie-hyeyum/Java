@@ -6,6 +6,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JRadioButton;
 
@@ -18,16 +19,21 @@ public class RadioButtonEx extends JFrame implements ItemListener {
 		setTitle("라디오 버튼 예제");
 		setSize(300, 200);
 		
-		// 라디오 버튼 3개 생성
+		// 라디오 버튼 생성
 		JRadioButton rdoApple = new JRadioButton("사과");
 		JRadioButton rdoPear = new JRadioButton("배", true);
 		JRadioButton rdoCherry = new JRadioButton("체리");
+		
+		JRadioButton rdoPhone = new JRadioButton("전화", new ImageIcon("images/normalIcon.gif"));
+		rdoPhone.setSelectedIcon(new ImageIcon("images/pressedIcon.gif"));
+		
 		con.setLayout(new FlowLayout());
 		con.add(rdoApple);
 		con.add(rdoPear);
 		con.add(rdoCherry);
+		con.add(rdoPhone);
 		
-		// 버튼 그룹에 3개의 라디오 버튼 삽입
+		// 버튼 그룹에 라디오 버튼 삽입
 		ButtonGroup group = new ButtonGroup();
 		group.add(rdoApple);
 		group.add(rdoPear);
@@ -47,6 +53,7 @@ public class RadioButtonEx extends JFrame implements ItemListener {
 
 	@Override
 	public void itemStateChanged(ItemEvent e) {
+		System.out.println(e);
 		int state = e.getStateChange();
 		if(state == ItemEvent.SELECTED) {
 			Object obj = e.getItem();
