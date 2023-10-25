@@ -14,7 +14,7 @@ public class GuessNumT {
 //		int[] records = {30000, 30000, 30000, 30000, 30000};
 		// int[] records = new int[5]; // {0, 0, 0, 0, 0}
 		// int count = 5;
-		initRecords(); // 초기화
+		initRecords();
 		// showRecords(records);
 		targetNum = makeTargetNum(); //
 		System.out.println("targetNum:" + targetNum);
