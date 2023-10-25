@@ -3,6 +3,8 @@ package ex01;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
@@ -10,7 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
-public class JCheckBoxItemEventExT extends JFrame {
+public class JCheckBoxItemEventExT extends JFrame implements ItemListener {
 	private String[] names = {"사과", "배", "체리"};
 	private int[] prices = {100, 500, 20000};
 	private Container con = getContentPane();
@@ -37,7 +39,7 @@ public class JCheckBoxItemEventExT extends JFrame {
 
 	private void setListener() {
 		for (int i = 0; i < boxes.length; i++) {
-			boxes[i].addItemListener(null);
+			boxes[i].addItemListener(this);
 		}
 		
 	}
@@ -83,6 +85,17 @@ public class JCheckBoxItemEventExT extends JFrame {
 	public static void main(String[] args) {
 		new JCheckBoxItemEventExT();
 
+	}
+
+	@Override
+	public void itemStateChanged(ItemEvent e) {
+		int sum = 0;
+		for (int i = 0; i < boxes.length; i++) {
+			if(boxes[i].isSelected()) {
+				sum += prices[i];
+			}
+		}
+		lblResult.setText("현재 " + sum + "원 입니다.");
 	}
 
 }
