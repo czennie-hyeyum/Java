@@ -47,6 +47,21 @@ public class GuessNumFrame extends JFrame {
 		con.add(pnlCount, BorderLayout.SOUTH);
 	}
 	
+	public class SouthPanel extends JPanel {
+		private JLabel lblCount = new JLabel("남은 횟수 ");
+		private JTextField tfCount = new JTextField("♥♥♥♥♥");
+		
+		public SouthPanel() {
+			lblCount.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+			tfCount.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+			tfCount.setEditable(false);
+			add(lblCount);
+			add(tfCount);
+		}
+		
+	}
+	
+	
 	public class NorthPanel extends JPanel implements ActionListener {
 		private static JTextField tfNum = new JTextField(5);
 		private JButton btnStart = new JButton("입력");
@@ -65,7 +80,6 @@ public class GuessNumFrame extends JFrame {
 			add(btnReset);
 			tfNum.addActionListener(this);
 			btnStart.addActionListener(this);
-			btnReset.addActionListener(this);
 			
 		}
 		
@@ -73,7 +87,6 @@ public class GuessNumFrame extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			int targetNum = (int)(Math.random() * 100) + 1;	
 			int userNum = Integer.parseInt(tfNum.getText());
-			int count = 5;
 			taRule.append(targetNum + "\n");
 			
 			if(targetNum == userNum) {
@@ -82,27 +95,13 @@ public class GuessNumFrame extends JFrame {
 				taRule.append(userNum + "보다 큽니다.\n");
 			} else if(targetNum < userNum){
 				taRule.append(userNum + "보다 작습니다.\n");
-				count--;
 			}
 			
 		}
 		
 	}
 	
-	public class SouthPanel extends JPanel {
-		private JLabel lblCount = new JLabel("남은 횟수 ");
-		private JTextField tfCount = new JTextField("♥♥♥♥♥");
-		
-		public SouthPanel() {
-			lblCount.setFont(new Font("맑은 고딕", Font.BOLD, 15));
-			tfCount.setFont(new Font("맑은 고딕", Font.BOLD, 15));
-			tfCount.setEditable(false);
-			add(lblCount);
-			add(tfCount);
-		}
-		
-		
-	}
+	
 	
 	public static void main(String[] args) {
 		new GuessNumFrame();
