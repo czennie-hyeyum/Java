@@ -49,11 +49,9 @@ public class GuessNumFrame extends JFrame {
 	
 	public class SouthPanel extends JPanel {
 		private JLabel lblCount = new JLabel("남은 횟수 ");
-		private JTextField tfCount = new JTextField("♥♥♥♥♥");
+		private JTextField tfCount = new JTextField(" ♥♥♥♥♥ ");
 		
 		public SouthPanel() {
-			lblCount.setFont(new Font("맑은 고딕", Font.BOLD, 15));
-			tfCount.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 			tfCount.setEditable(false);
 			add(lblCount);
 			add(tfCount);
@@ -100,7 +98,6 @@ public class GuessNumFrame extends JFrame {
 		}
 		
 	}
-	
 	
 	
 	public static void main(String[] args) {
