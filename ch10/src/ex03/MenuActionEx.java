@@ -1,22 +1,28 @@
 package ex03;
 
 import java.awt.Container;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Vector;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 @SuppressWarnings("serial")
-public class MenuActionEventEx extends JFrame {
+public class MenuActionEx extends JFrame implements ActionListener {
 	private Container con = getContentPane();
 	private Vector<JMenuItem> vecItem = new Vector<>(); 
+	private JLabel label = new JLabel();
 	
-	public MenuActionEventEx() {
+	public MenuActionEx() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("메뉴 예제");
 		setSize(500, 500);
+		con.add(label);
 		createMenu();
 		setListener();
 		setVisible(true);
@@ -72,7 +78,32 @@ public class MenuActionEventEx extends JFrame {
 	}
 
 	public static void main(String[] args) {
-		new MenuActionEventEx();
+		new MenuActionEx();
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		Object obj = e.getSource();
+		JMenuItem item = (JMenuItem)obj;
+		String command = item.getActionCommand(); // 메뉴 아이템 글자 얻어오기
+		switch (command) {
+			case "Load":
+				label.setIcon(new ImageIcon ("images/image0.jpg"));
+				break;
+				
+			case "Hide":
+				label.setVisible(false);
+				break;
+				
+			case "ReShow":
+				label.setVisible(true);
+				break;
+				
+			case "Exit":
+				System.exit(0);
+				break;
+				
+		}
 	}
 
 }
