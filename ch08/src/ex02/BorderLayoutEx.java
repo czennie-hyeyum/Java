@@ -3,7 +3,6 @@ package ex02;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
-import java.awt.FlowLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
@@ -33,5 +32,5 @@ public class BorderLayoutEx extends JFrame {
 	public static void main(String[] args) {
 		new BorderLayoutEx();
 	}
-
+	
 }

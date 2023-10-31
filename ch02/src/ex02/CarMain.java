@@ -6,7 +6,6 @@ public class CarMain {
 
 	}
 	
-	
 	//자동차 클래스 Car class
 	
 	//데이터

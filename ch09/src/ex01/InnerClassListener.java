@@ -47,6 +47,7 @@ public class InnerClassListener extends JFrame {
 			JButton theButton = (JButton)obj;
 			String text = theButton.getText();
 			// 외부 클래스의 멤버(필드)에 접근 가능
+<<<<<<< HEAD
 			if (obj == btnAction) {
 				if (text.equals("Action")) {
 					btnAction.setText("액션");
@@ -58,6 +59,21 @@ public class InnerClassListener extends JFrame {
 				if (text.equals("Java")) {
 					btnJava.setText("자바");
 				} else {
+=======
+			
+			if (obj == btnAction) {
+				if (text.equals("Action")) {
+					btnAction.setText("액션");
+				} else if(text.equals("액션")) {
+					btnAction.setText("Action");
+				}
+				
+			// Java 버튼을 눌렀을 때 자바가 나오게끔
+			} else if (obj == btnJava) {
+				if (text.equals("Java")) {
+					btnJava.setText("자바");
+				} else if(text.equals("자바")) {
+>>>>>>> branch 'main' of https://github.com/czennie-hyeyum/workspace.git
 					btnJava.setText("Java");
 				}
 			}

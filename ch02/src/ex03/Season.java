@@ -5,18 +5,17 @@ import java.util.Scanner;
 public class Season {
 
 	public static void main(String[] args) {
-		// 스캐너 생성
 		Scanner scanner = new Scanner(System.in);
 		
 		System.out.print("월(1~12)을 입력하세요: ");
 		int month = scanner.nextInt();
 		
-		switch (month) { //전원
+		switch (month) { 
 		case 3: 
 		case 4: 
 		case 5:
 			System.out.println("봄");
-			break; //브레이크
+			break; 
 			
 		case 6:
 		case 7:

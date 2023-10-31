@@ -17,7 +17,6 @@ class Greeter {	//class 개체 생성
 	String name = "Tom";
 	String 위 = "밥";
 	
-	
 	public void sayHello() {	
 		System.out.println("Hello");
 	}

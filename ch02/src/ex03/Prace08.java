@@ -16,11 +16,7 @@ public class Prace08 {
 			System.out.println((2000 * count) + "원입니다.");
 			break;
 			
-		
 		}
-		
-		
-		
 		
 		scanner.close();
 		
