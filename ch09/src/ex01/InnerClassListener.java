@@ -88,10 +88,12 @@ public class InnerClassListener extends JFrame {
 				btnAction.setText("Action");
 			}
 			*/
-		}
+			}
 		
-	}
+		}
 
-} // class
+	} // class
+	
+}
 
 
