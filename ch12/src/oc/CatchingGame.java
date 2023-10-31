@@ -109,22 +109,19 @@ public class CatchingGame extends JFrame {
 				 	int monsterX = getX();
 					int monsterY = getY();
 					
-					int x = monsterX;
-					int y = monsterY;
-					
 					if (avatarX > monsterX) {
-		            	x = monsterX + MOVE_UNIT;
+		            	monsterX += MOVE_UNIT;
 		            } else if (avatarX < monsterX) {
-		            	x = monsterX - MOVE_UNIT;
+		            	monsterX -= MOVE_UNIT;
 		            }
 					
 					if (avatarY > monsterY) {
-					  	y = monsterY + MOVE_UNIT;
+					  	monsterY += MOVE_UNIT;
 		            } else if (avatarY < monsterY) {
-		            	y = monsterY - MOVE_UNIT;
+		            	monsterY -= MOVE_UNIT;
 		            }
 			            
-				 	setLocation(x, y);
+				 	setLocation(monsterX, monsterY);
 				 	
 				 	 if (Math.abs(monsterX - avatarX) <= 35 && Math.abs(monsterY - avatarY) <= 35) {
 	                break;
