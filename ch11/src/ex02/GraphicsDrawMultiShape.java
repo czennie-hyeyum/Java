@@ -17,10 +17,11 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
 @SuppressWarnings("serial")
-public class GraphicsDrawMultiShape extends JFrame implements ActionListener{
+public class GraphicsDrawMultiShape extends JFrame implements ActionListener {
+	
 	private Container con = getContentPane();
 	private String[] shapeNames = {"선", "타원", "사각형"};
-	private String[] colorNames = {"파랑", "빨강", "보라"};
+	private String[] colorNames = {"빨강", "파랑", "보라"};
 	private JRadioButton[] rdoShapes = new JRadioButton[shapeNames.length];
 	private JRadioButton[] rdoColors = new JRadioButton[colorNames.length];
 	private PaintPanel paintPanel = new PaintPanel();
@@ -33,10 +34,9 @@ public class GraphicsDrawMultiShape extends JFrame implements ActionListener{
 	private int curShape = LINE;
 	private int curColor = RED;
 	private MyMouseAdapter adapter = new MyMouseAdapter();
-	private Point startPoint = new Point();
-	private Point endPoint = new Point();
+	private Point point1 = new Point();
+	private Point point2 = new Point();
 	private Vector<MyShape> vecShape = new Vector<MyShape>();
-	
 	
 	public class MyShape {
 		private Point startPoint;
@@ -44,15 +44,14 @@ public class GraphicsDrawMultiShape extends JFrame implements ActionListener{
 		private int shape;
 		private int color;
 		
-		
 		public MyShape(Point startPoint, Point endPoint, int shape, int color) {
-				super();
-				this.startPoint = startPoint;
-				this.endPoint = endPoint;
-				this.shape = shape;
-				this.color = color;
-			}
-		
+			super();
+			this.startPoint = startPoint;
+			this.endPoint = endPoint;
+			this.shape = shape;
+			this.color = color;
+		}
+
 		public Point getStartPoint() {
 			return startPoint;
 		}
@@ -84,28 +83,35 @@ public class GraphicsDrawMultiShape extends JFrame implements ActionListener{
 		public void setColor(int color) {
 			this.color = color;
 		}
-		
-		
 
+		@Override
+		public String toString() {
+			return "MyShape [startPoint=" + startPoint + ", endPoint=" + endPoint + ", shape=" + shape + ", color="
+					+ color + "]";
+		}
+		
+		
+		
 	}
-	
 	
 	public class MyMouseAdapter extends MouseAdapter {
 		@Override
 		public void mousePressed(MouseEvent e) {
-			startPoint = e.getPoint();
+			point1 = e.getPoint();
 		}
 		
 		@Override
 		public void mouseDragged(MouseEvent e) {
-			endPoint = e.getPoint();
+			point2 = e.getPoint();
+			
 			paintPanel.repaint();
 		}
 		
 		@Override
 		public void mouseReleased(MouseEvent e) {
-			MyShape shape = new MyShape(startPoint, endPoint, curShape, curColor);
+			MyShape shape = new MyShape(point1, point2, curShape, curColor);
 			vecShape.add(shape);
+			System.out.println(vecShape);
 		}
 	}
 	
@@ -117,9 +123,9 @@ public class GraphicsDrawMultiShape extends JFrame implements ActionListener{
 		setListener();
 		setVisible(true);
 	}
-	
+
 	private void setListener() {
-		for(int i = 0; i < rdoShapes.length; i++) {
+		for (int i = 0; i < rdoShapes.length; i++) {
 			rdoShapes[i].addActionListener(this);
 			rdoColors[i].addActionListener(this);
 		}
@@ -128,17 +134,17 @@ public class GraphicsDrawMultiShape extends JFrame implements ActionListener{
 		paintPanel.addMouseMotionListener(adapter);
 		
 	}
-	
+
 	private void setUI() {
 		setNorth();
 		setCenter();
 		setSouth();
 	}
-	
+
 	private void setCenter() {
 		con.add(paintPanel);
 	}
-	
+
 	private void setSouth() {
 		JPanel pnlSouth = new JPanel();
 		pnlSouth.setBackground(Color.CYAN);
@@ -151,63 +157,97 @@ public class GraphicsDrawMultiShape extends JFrame implements ActionListener{
 		rdoColors[0].setSelected(true);
 		con.add(pnlSouth, BorderLayout.SOUTH);
 	}
-	
+
 	private void setNorth() {
 		JPanel pnlNorth = new JPanel();
 		pnlNorth.setBackground(Color.YELLOW);
 		ButtonGroup grpShape = new ButtonGroup();
-		for(int i = 0; i < rdoShapes.length; i++) {
+		for (int i = 0; i < rdoShapes.length; i++) {
 			rdoShapes[i] = new JRadioButton(shapeNames[i]);
 			pnlNorth.add(rdoShapes[i]);
 			grpShape.add(rdoShapes[i]);
 		}
 		rdoShapes[0].setSelected(true);
 		con.add(pnlNorth, BorderLayout.NORTH);
+		
 	}
 	
 	public class PaintPanel extends JPanel {
+		private void drawVector(Graphics g) {
+			for (MyShape aShape : vecShape) {
+				Point startPoint = aShape.getStartPoint();
+				Point endPoint = aShape.getEndPoint();
+				int shape = aShape.getShape();
+				int color = aShape.getColor();
+				
+				switch (color) {
+				case RED: 
+					g.setColor(Color.RED);
+					break;
+				case BLUE: 
+					g.setColor(Color.BLUE);
+					break;
+				case MAGENTA: 
+					g.setColor(Color.MAGENTA);
+					break;
+					
+				}
+				
+				switch (shape) {
+				case LINE:
+					g.drawLine(startPoint.x, startPoint.y, endPoint.x, endPoint.y);
+					break;
+				case OVAL:
+					g.drawOval(startPoint.x, startPoint.y, endPoint.x - startPoint.x, endPoint.y - startPoint.y);
+					break;
+				case RECT:
+					g.drawRect(startPoint.x, startPoint.y, endPoint.x - startPoint.x, endPoint.y - startPoint.y);
+					break;
+				}
+			}
+		}
+		
+		private void drawCurShape(Graphics g) {
+			switch (curColor) {
+			case RED: 
+				g.setColor(Color.RED);
+				break;
+			case BLUE: 
+				g.setColor(Color.BLUE);
+				break;
+			case MAGENTA: 
+				g.setColor(Color.MAGENTA);
+				break;
+				
+			}
+			
+			switch (curShape) {
+			case LINE:
+				g.drawLine(point1.x, point1.y, point2.x, point2.y);
+				break;
+			case OVAL:
+				g.drawOval(point1.x, point1.y, point2.x - point1.x, point2.y - point1.y);
+				break;
+			case RECT:
+				g.drawRect(point1.x, point1.y, point2.x - point1.x, point2.y - point1.y);
+				break;
+			}
+		}
 		
 		@Override
 		protected void paintComponent(Graphics g) {
 			super.paintComponent(g);
-			switch(curColor) {
-			case RED:
-					g.setColor(Color.RED);
-				break;
-				
-			case BLUE:
-					g.setColor(Color.BLUE);
-				break;
-				
-			case MAGENTA:
-					g.setColor(Color.MAGENTA);
-				break;
-				
-			}
 			
-				
-			switch(curShape) {
-			case LINE:
-				g.drawLine(startPoint.x, startPoint.y, endPoint.x, endPoint.y);
-				break;
-				
-			case OVAL:
-				g.drawOval(startPoint.x, startPoint.y, endPoint.x - startPoint.x, endPoint.y - startPoint.y);
-				break;
-				
-			case RECT:
-				g.drawRect(startPoint.x, startPoint.y, endPoint.x - startPoint.x, endPoint.y - startPoint.y);
-				break;
-				
-			}
-			
+			drawVector(g);
+			drawCurShape(g);
 			
 		}
 	}
-		
+
 	public static void main(String[] args) {
 		new GraphicsDrawMultiShape();
-	}	
+
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -218,12 +258,14 @@ public class GraphicsDrawMultiShape extends JFrame implements ActionListener{
 				break;
 			}
 		}
+		
 		for (int i = 0; i < rdoColors.length; i++) {
 			if (obj == rdoColors[i]) {
 				curColor = i;
 				break;
 			}
 		}
+		
 	}
-	
+
 }
