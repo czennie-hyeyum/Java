@@ -5,7 +5,7 @@ public class MenuViewer {
 		System.out.println("--------------------------");
 		System.out.println("1.입력  2.전체조회  3.종료");
 		System.out.println("--------------------------");
-	}
+	} 
 	
 	public static void showSubMenu() {
 		System.out.println("--------------------------");

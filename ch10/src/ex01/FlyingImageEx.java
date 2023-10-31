@@ -15,7 +15,7 @@ public class FlyingImageEx extends JFrame {
 	private ImageIcon iconLeft = new ImageIcon("images/left.png");
 	private JLabel label = new JLabel(new ImageIcon("images/right.png"));
 	private static final int MOVE_UNIT = 10;
-	
+	 
 	public FlyingImageEx() {
 		super("키보드로 이미지 움직이기");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

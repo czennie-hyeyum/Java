@@ -11,7 +11,7 @@ public class FlowLayoutEx extends JFrame {
 	Container container = getContentPane(); 
 	String[] texts = {"add", "sub", "mul", "div", "Calculate"};
 	
-	
+	 
 	public FlowLayoutEx() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(300, 200);
