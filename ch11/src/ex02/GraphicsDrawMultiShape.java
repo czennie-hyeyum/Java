@@ -84,13 +84,6 @@ public class GraphicsDrawMultiShape extends JFrame implements ActionListener {
 			this.color = color;
 		}
 
-		@Override
-		public String toString() {
-			return "MyShape [startPoint=" + startPoint + ", endPoint=" + endPoint + ", shape=" + shape + ", color="
-					+ color + "]";
-		}
-		
-		
 		
 	}
 	
@@ -110,8 +103,7 @@ public class GraphicsDrawMultiShape extends JFrame implements ActionListener {
 		@Override
 		public void mouseReleased(MouseEvent e) {
 			MyShape shape = new MyShape(point1, point2, curShape, curColor);
-			vecShape.add(shape);
-			System.out.println(vecShape);
+			vecShape.add(shape);	
 		}
 	}
 	
