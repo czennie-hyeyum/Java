@@ -1,4 +1,4 @@
-package ver12;
+package ver13;
 
 import java.util.Vector;
 
@@ -32,6 +32,7 @@ public class PhoneBook {
 		return null;
 	}
 	
+	// 이름 중복 확인
 	public boolean isNameDup(String searchName) {
 		for (int i = 0; i < vec.size(); i++) {
 			PhoneInfo info = vec.get(i);

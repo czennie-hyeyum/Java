@@ -22,6 +22,7 @@ public class PhoneBookFrame extends JFrame implements ActionListener {
 	private static final String DELIM = " / ";
 	private PhoneBook book = PhoneBook.getInstance();
 	private Container con = getContentPane();
+	
 	// North
 	JTextField tfName = new JTextField(); // 이름
 	JTextField tfPhoneNumber = new JTextField(); // 전화번호
