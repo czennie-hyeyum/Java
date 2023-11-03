@@ -186,6 +186,12 @@ public class PhoneBookFrame extends JFrame implements ActionListener {
 		Object obj = e.getSource();
 		chooser.setFileFilter(filter);
 		
+		if (obj == miLoad) {
+			
+		}
+			
+			
+		
 		// ----------- 불러오기 -----------	
 		
 		
