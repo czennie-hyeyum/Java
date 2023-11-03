@@ -41,7 +41,7 @@ public class PhoneBookFrame extends JFrame implements ActionListener {
 	JButton btnSearch = new JButton("찾기");
 	
 	// Center
-		JTextArea taMessage = new JTextArea();
+	JTextArea taMessage = new JTextArea();
 		
 	// South
 	JButton btnInput = new JButton("입력");

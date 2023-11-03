@@ -25,9 +25,10 @@ public class GuessNumFrame extends JFrame implements ActionListener {
 	// North
 	private JPanel pnlNorth = new JPanel();
 	private JTextField tfInput = new JTextField(5);
+	private JLabel lblInput = new JLabel("입력");
 	private JButton btnInput = new JButton("입력");
 	private JLabel lblGap = new JLabel("          ");
-	private JLabel lblRecord = new JLabel("기록:");
+	private JLabel lblRecord = new JLabel("기록");
 	private JTextField tfRecord = new JTextField("30000");
 	private JButton btnNewGame = new JButton("새게임");
 	
@@ -86,6 +87,7 @@ public class GuessNumFrame extends JFrame implements ActionListener {
 
 	private void setNorth() {
 		pnlNorth.setBackground(Color.YELLOW);
+		pnlNorth.add(lblInput);
 		pnlNorth.add(tfInput);
 		pnlNorth.add(btnInput);
 		pnlNorth.add(lblGap);

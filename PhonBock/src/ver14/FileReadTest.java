@@ -35,7 +35,7 @@ public class FileReadTest {
 				}
 				vec.add(info);
 			}
-			System.out.println(vec);
+			System.out.print(vec);
 			br.close();
 		} catch (Exception e) {
 			e.printStackTrace();

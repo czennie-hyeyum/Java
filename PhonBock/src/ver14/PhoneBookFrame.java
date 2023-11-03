@@ -11,6 +11,7 @@ import java.util.Vector;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -22,16 +23,20 @@ import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 @SuppressWarnings("serial")
 public class PhoneBookFrame extends JFrame implements ActionListener {
 	private static final String DELIM = " / ";
 	private PhoneBook book = PhoneBook.getInstance();
 	private Container con = getContentPane();
+	private JFileChooser chooser = new JFileChooser();
+	private FileNameExtensionFilter filter = new FileNameExtensionFilter("TXT", "txt");
 	
 	// North
 	JMenuBar menuBar = new JMenuBar();
 	JMenu mnuFile = new JMenu("파일");
+	JMenuItem miLoad = new JMenuItem("불러오기"); 
 	JMenuItem miInput = new JMenuItem("입력");
 	JMenuItem miGetAll = new JMenuItem("전체 조회");
 	JMenuItem miUpdate = new JMenuItem("수정");
@@ -67,6 +72,7 @@ public class PhoneBookFrame extends JFrame implements ActionListener {
 	
 	private void fileMenu() {
 		menuBar.add(mnuFile);
+		mnuFile.add(miLoad);
 		mnuFile.add(miInput);
 		mnuFile.add(miGetAll);
 		mnuFile.add(miUpdate);
@@ -91,6 +97,7 @@ public class PhoneBookFrame extends JFrame implements ActionListener {
 		miUpdate.addActionListener(this);
 		miDelete.addActionListener(this);
 		miExit.addActionListener(this);
+		miLoad.addActionListener(this);
 		
 	}
 
@@ -177,6 +184,10 @@ public class PhoneBookFrame extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object obj = e.getSource();
+		chooser.setFileFilter(filter);
+		
+		// ----------- 불러오기 -----------	
+		
 		
 		// ----------- 입력 -----------	
 		if (obj == btnInput || obj == miInput) {
@@ -228,7 +239,7 @@ public class PhoneBookFrame extends JFrame implements ActionListener {
 			PhoneInfo info = book.searchByName(name);
 			
 			if (info != null) {
-			    int delete = JOptionPane.showConfirmDialog(PhoneBookFrame.this, "삭제하시겠습니까?", "삭제", JOptionPane.YES_NO_OPTION);
+			    int delete = JOptionPane.showConfirmDialog(PhoneBookFrame.this, name + "님의 정보를 정말로 삭제하시겠습니까?", "삭제", JOptionPane.YES_NO_OPTION);
 			    
 			    if (delete == JOptionPane.YES_OPTION) {
 			    	boolean result = book.delete(name);
@@ -271,7 +282,7 @@ public class PhoneBookFrame extends JFrame implements ActionListener {
 		
 		public InputDialog(JFrame owner, String title, boolean isModal) {
 			super(owner, title, isModal);
-			setSize(300, 300);
+			setSize(300, 250);
 			setLocationRelativeTo(owner);
 			
 			setLayout(new GridLayout(5, 2, 10, 10));
