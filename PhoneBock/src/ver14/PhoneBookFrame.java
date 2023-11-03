@@ -186,20 +186,29 @@ public class PhoneBookFrame extends JFrame implements ActionListener {
 		Object obj = e.getSource();
 		chooser.setFileFilter(filter);
 		
-		if (obj == miLoad) {
-			
-		}
-			
-			
-		
-		// ----------- 불러오기 -----------	
-		
 		
 		// ----------- 입력 -----------	
 		if (obj == btnInput || obj == miInput) {
 			inputDialog.resetFields();
 			inputDialog.setInputOrUpdate("입력");
 			inputDialog.setVisible(true);
+			
+		// ----------- 불러오기 -----------	
+		} else if (obj == miLoad) {
+			chooser.setFileFilter(filter);
+				
+			int result = chooser.showOpenDialog(PhoneBookFrame.this);
+			
+			if (result == JFileChooser.APPROVE_OPTION) {
+				String fileName = chooser.getSelectedFile().getAbsolutePath();
+				try {
+					book.readData(fileName);
+					JOptionPane.showMessageDialog(PhoneBookFrame.this, "데이터를 성공적으로 불러왔습니다.", "알림", JOptionPane.INFORMATION_MESSAGE);
+				} catch (Exception ex) {
+					ex.printStackTrace();
+					JOptionPane.showMessageDialog(PhoneBookFrame.this, "데이터 불러오기에 실패했습니다.", "에러", JOptionPane.ERROR_MESSAGE);
+				}
+			}
 			
 			
 		// ----------- 검색 -----------	

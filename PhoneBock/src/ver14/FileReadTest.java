@@ -8,7 +8,7 @@ import java.util.Vector;
 public class FileReadTest {
 
 	public static void main(String[] args) {
-		String fileName = "D:/git/Java/PhonBock/data.txt";
+		String fileName = "D:/Temp/data.csv";
 		try {
 			Vector<PhoneInfo> vec = new Vector<>();
 			FileReader fr = new FileReader(fileName);

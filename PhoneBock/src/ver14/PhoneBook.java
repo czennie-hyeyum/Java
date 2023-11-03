@@ -2,6 +2,7 @@ package ver14;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.StringTokenizer;
 import java.util.Vector;
 
@@ -90,37 +91,7 @@ public class PhoneBook {
 	
 	// 데이터 불러오기
 	public void readData(String fileName) {
-		try {
-			FileReader fr = new FileReader(fileName);
-			BufferedReader br = new BufferedReader(fr);
-			while (true) {
-				String str = br.readLine();
-				if (str == null) {
-					return;
-				}
-				StringTokenizer tokenizer = new StringTokenizer(str, ",");
-				String name = tokenizer.nextToken();
-				String phoneNumber = tokenizer.nextToken();
-				String birthDay = tokenizer.nextToken();
-				String scName = tokenizer.nextToken();
-				String scNum = tokenizer.nextToken();
-				PhoneInfo info = null;
-				switch(scNum) {
-					case "1":
-						info = new PhoneInfoSchool(name, phoneNumber, birthDay, scName);
-					break;
-					case "2": 
-						info = new PhoneInfoCompany(name, phoneNumber, birthDay, scName);
-					break;
-				}
-				vec.add(info);
-			}
-			
-			br.close();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		
 	}
 	
 } // class
