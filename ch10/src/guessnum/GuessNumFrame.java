@@ -3,8 +3,10 @@ package guessnum;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -39,10 +41,10 @@ public class GuessNumFrame extends JFrame implements ActionListener {
 	
 	// South
 	private JPanel pnlSouth = new JPanel();
-	private TimePanel pnlTime = new TimePanel();
 	private JLabel lblCount = new JLabel("남은 횟수:");
 	private JLabel lblTime = new JLabel("남은 시간:");
-	private JTextField tfTime = new JTextField();
+	private PaintPanel pnlTimeBar = new PaintPanel();
+	private JTextField tfCount = new JTextField();
 	
 	private long startTime;
 	private long endTime;
@@ -54,7 +56,6 @@ public class GuessNumFrame extends JFrame implements ActionListener {
 		setUI();
 		setListener();
 		init();
-		
 		setVisible(true);
 	}
 	
@@ -74,15 +75,14 @@ public class GuessNumFrame extends JFrame implements ActionListener {
 		setCenter();
 		setSouth();
 	}
-
+	
 	private void setSouth() {
-		pnlSouth.setBackground(Color.CYAN);
 		pnlSouth.add(lblCount);
-		pnlSouth.add(tfTime);
-		pnlSouth.add(lblTime);
-		pnlSouth.add(pnlTime);
-		pnlTime.setBounds(0, 0, 600, 40);
-		con.add(pnlSouth, BorderLayout.SOUTH);
+		pnlSouth.add(tfCount);
+		pnlTimeBar.add(lblTime);
+//		pnlSouth.setLayout(new GridLayout(1, 2, 10, 10));
+		pnlTimeBar.setLayout(new GridLayout(1, 2));
+		con.add(pnlSouth);
 	}
 
 	private void setCenter() {
@@ -91,7 +91,7 @@ public class GuessNumFrame extends JFrame implements ActionListener {
 	}
 
 	private void setNorth() {
-		pnlNorth.setBackground(Color.PINK);
+		pnlNorth.setBackground(Color.MAGENTA);
 		pnlNorth.add(lblInput);
 		pnlNorth.add(tfInput);
 		pnlNorth.add(btnInput);
@@ -107,21 +107,46 @@ public class GuessNumFrame extends JFrame implements ActionListener {
 		btnInput.setEnabled(true);
 		tfRecord.setEditable(false);
 		taMessage.setEditable(false);
-		tfTime.setEditable(false);
+		tfCount.setEditable(false);
 		taMessage.setText(START_MESSAGE);
 		printHeart();
 		startTime = System.currentTimeMillis();
 	}
 	
-	public class TimePanel extends JPanel {
+	class PaintPanel extends JLabel implements Runnable {
+		private int timeLeft = 100;
+		
+		public PaintPanel() {
+			setPreferredSize(new Dimension(400, 50));
+			Thread thread = new Thread(this);
+			thread.start();
+		}
 		
 		@Override
 		protected void paintComponent(Graphics g) {
 			super.paintComponent(g);
+			int barWidth = (int)(400 * (timeLeft / 100.0));
 			g.setColor(Color.GREEN);
-			g.fillRect(0, 0, getWidth(), getHeight());
+			g.fillRect(0, 0, barWidth, 50);
 		}
+		
+		@Override
+		public void run() {
+			while (timeLeft > 0) {
+				try {
+					Thread.sleep(500);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				
+				timeLeft--;
+		        repaint();
+				
+			}
+		}
+		
 	}
+	
 
 	public static void main(String[] args) {
 		new GuessNumFrame();
@@ -134,7 +159,7 @@ public class GuessNumFrame extends JFrame implements ActionListener {
 		for (int i = 0; i < count; i++) {
 			heart += "♥";
 		}
-		tfTime.setText(heart);
+		tfCount.setText(heart);
 	}
 	
 	private void updateRecord() {
@@ -145,7 +170,6 @@ public class GuessNumFrame extends JFrame implements ActionListener {
 			tfRecord.setText(String.valueOf(elapsedTime));
 		}
 	}
-	
 
 	private void appendMessage(int result, int userNum) {
 		String resultMessage = "";
