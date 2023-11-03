@@ -1,4 +1,4 @@
-package ver13;
+package ver14;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
@@ -55,7 +55,7 @@ public class PhoneBookFrame extends JFrame implements ActionListener {
 	
 	public PhoneBookFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setTitle("전화번호부 ver.13");
+		setTitle("전화번호부 ver.14");
 		setSize(500, 500);
 		setLocationRelativeTo(null);
 		fileMenu();
