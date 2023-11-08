@@ -29,6 +29,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class PhoneBookFrame extends JFrame implements ActionListener {
 	private static final String DELIM = " | ";
 	private PhoneBook book = PhoneBook.getInstance();
+	private PhoneBookDao dao = PhoneBookDao.getInstance();
 	private Container con = getContentPane();
 	private JFileChooser chooser = new JFileChooser("./");
 	private FileNameExtensionFilter filter =
@@ -60,7 +61,7 @@ public class PhoneBookFrame extends JFrame implements ActionListener {
 	
 	public PhoneBookFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setTitle("전화번호부 ver.14");
+		setTitle("전화번호부 ver.15");
 		setSize(500, 500);
 		setLocationRelativeTo(null);
 		setMenu();
@@ -211,7 +212,7 @@ public class PhoneBookFrame extends JFrame implements ActionListener {
 			if (result == JFileChooser.APPROVE_OPTION) {
 				String path = chooser.getSelectedFile().getPath();
 				book.load(path);
-				Vector<PhoneInfo> loadedData = book.getAll();
+				Vector<PhoneInfo> loadedData = dao.getAll();
 				if (loadedData != null && !loadedData.isEmpty()) {
 			           taMessage.setText("");
 			           printData(loadedData);
@@ -236,7 +237,7 @@ public class PhoneBookFrame extends JFrame implements ActionListener {
 			
 		// ----------- 없을 경우 -----------	
 		} else if (obj == btnGetAll || obj == miGetAll) {
-			Vector<PhoneInfo> vector = book.getAll();
+			Vector<PhoneInfo> vector = dao.getAll();
 			if (vector == null || vector.size() == 0) {
 				JOptionPane.showMessageDialog(PhoneBookFrame.this, "데이터가 없습니다.", "알림", JOptionPane.ERROR_MESSAGE);
 			} else {

@@ -9,7 +9,6 @@ public class PhoneInfoCompany extends PhoneInfo {
 		this.company = company;
 	}
 	
-	
 	public String getCompany() {
 		return company;
 	}

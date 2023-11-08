@@ -9,7 +9,6 @@ public class PhoneInfoSchool extends PhoneInfo {
 		this.school = school;
 	}
 	
-	
 	public String getSchool() {
 		return school;
 	}
@@ -30,6 +29,5 @@ public class PhoneInfoSchool extends PhoneInfo {
 		sb.append("]");
 		return sb.toString();
 	}
-	
 
 }

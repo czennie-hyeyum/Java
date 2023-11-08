@@ -141,7 +141,6 @@ public class GuessNumFrame extends JFrame implements ActionListener {
 				resultMessage = "----- " + userNum + " 보다 작습니다. -----";
 				break;
 		} // switch
-		// System.out.println(resultMessage);
 		taMessage.append("\n" + resultMessage);
 	}
 	@Override
@@ -152,9 +151,7 @@ public class GuessNumFrame extends JFrame implements ActionListener {
 			try {
 				int userNum = Integer.parseInt(userInput);
 				System.out.println(userNum);
-				// 범위 체크
 				if (userNum < 1 || userNum > 100) {
-					// taMessage.append("\n1~100 사이의 숫자를 입력해주세요.");
 					JOptionPane.showMessageDialog(
 							GuessNumFrame.this, "1~100 사이의 숫자를 입력해주세요.", 
 							"알림", JOptionPane.ERROR_MESSAGE);
@@ -163,7 +160,6 @@ public class GuessNumFrame extends JFrame implements ActionListener {
 				int result = manager.judge(userNum);
 				appendMessage(result, userNum);
 			} catch (NumberFormatException nfe) {
-				// taMessage.append("\n숫자만 입력해주세요.");
 				JOptionPane.showMessageDialog(
 						GuessNumFrame.this, "숫자만 입력해 주세요", 
 						"알림", JOptionPane.ERROR_MESSAGE);
