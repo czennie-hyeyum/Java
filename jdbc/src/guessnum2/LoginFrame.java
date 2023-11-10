@@ -145,6 +145,7 @@ public class LoginFrame extends JFrame implements ActionListener {
 					}
 					
 				}
+				
 			} else if (obj == btnCancel) {
 				this.setVisible(false);
 			}

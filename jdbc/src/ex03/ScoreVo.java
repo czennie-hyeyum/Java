@@ -35,6 +35,4 @@ public class ScoreVo {
 		return "ScoreVo [username=" + username + ", score=" + score + "]";
 	}
 	
-	
-	
 }
