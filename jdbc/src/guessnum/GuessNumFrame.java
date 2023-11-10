@@ -104,7 +104,6 @@ public class GuessNumFrame extends JFrame implements ActionListener {
 
 	public static void main(String[] args) {
 		new GuessNumFrame();
-
 	}
 	
 	private void printHeart() {
