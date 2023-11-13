@@ -24,16 +24,18 @@ public class UserVo {
 		return userId;
 	}
 
-	public void setUserId(String tfReaisterId) {
-		this.userId = tfReaisterId;
+	public void setUserId(String userId) {
+		if (userId != null && userId.length() <= 20) {
+			this.userId = userId;
+		}
 	}
 
 	public String getUserPw() {
 		return userPw;
 	}
 
-	public void setUserPw(String tfReaisterPw) {
-		this.userPw = tfReaisterPw;
+	public void setUserPw(String userPw) {
+		this.userPw = userPw;
 	}
 
 	public String getUserCheckPw() {
@@ -48,22 +50,23 @@ public class UserVo {
 		return userName;
 	}
 
-	public void setUserName(String tfReaisterName) {
-		this.userName = tfReaisterName;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	public String getUserEmail() {
 		return userEmail;
 	}
 
-	public void setUserEmail(String tfReaisterEmail) {
-		this.userEmail = tfReaisterEmail;
+	public void setUserEmail(String userEmail) {
+		this.userEmail = userEmail;
 	}
 
 	@Override
-	public String toString() {
-		return "UserVo [userId=" + userId + ", userPw=" + userPw + ", userCheckPw=" + userCheckPw + ", userName="
-				+ userName + ", userEmail=" + userEmail + "]";
-	}
+	 public String toString() {
+        return "UserVo [userId=" + userId + ", userPw=" + userPw + ", userCheckPw=" + userCheckPw
+                + ", userName=" + userName + ", userEmail=" + userEmail + "]";
+    }
+	
 	
 }

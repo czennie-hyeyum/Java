@@ -24,7 +24,6 @@ public class LoginFrame extends JFrame implements ActionListener {
 	JButton btnAddUser = new JButton("사용자 등록");
 	private ReaisterDialog reaisterDialog = new ReaisterDialog(this, "입력/수정", true);
 	private List<UserVo> userList;
-	UserVo userVo = new UserVo();
 	
 	public LoginFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -86,13 +85,13 @@ public class LoginFrame extends JFrame implements ActionListener {
 	}
 	
 	class ReaisterDialog extends JDialog implements ActionListener {
-		JTextField tfReaisterId = new JTextField();
-		JPasswordField tfReaisterPw = new JPasswordField();
-		JPasswordField tfReaisterCheckPw = new JPasswordField();
-		JTextField tfReaisterName = new JTextField();
-		JTextField tfReaisterEmail = new JTextField();
+		JTextField tfuserId = new JTextField();
+		JPasswordField tfuserPw = new JPasswordField();
+		JPasswordField tfuserCheckPw = new JPasswordField();
+		JTextField tfuserName = new JTextField();
+		JTextField tfuserEmail = new JTextField();
 		String[] texts = {"아이디", "패스워드", "패스워드 확인", "이름", "이메일"};
-		JTextField[] textFields = {tfReaisterId, tfReaisterPw, tfReaisterCheckPw, tfReaisterName, tfReaisterEmail};
+		JTextField[] textFields = {tfuserId, tfuserPw, tfuserCheckPw, tfuserName, tfuserEmail};
 		JButton btnFinish = new JButton("완료");
 		JButton btnCancel = new JButton("취소");
 		
@@ -133,17 +132,14 @@ public class LoginFrame extends JFrame implements ActionListener {
 			
 			if (obj == btnFinish) {
 				if(title.equals("사용자 등록")) {
-					userVo.setUserId(tfReaisterId.getText());
-					userVo.setUserPw(new String(tfReaisterPw.getPassword()));
-					userVo.setUserCheckPw(new String(tfReaisterCheckPw.getPassword()));
-					userVo.setUserName(tfReaisterName.getText());
-					userVo.setUserEmail(tfReaisterEmail.getText());
+					UserVo userVo = new UserVo();
+					userVo.setUserId(tfuserId.getText());
+					userVo.setUserPw(new String(tfuserPw.getPassword()));
+					userVo.setUserCheckPw(new String(tfuserCheckPw.getPassword()));
+					userVo.setUserName(tfuserName.getText());
+					userVo.setUserEmail(tfuserEmail.getText());
 					userList.add(userVo);
-					
-					for(UserVo user : userList) {
-						System.out.println(user);
-					}
-					
+	                System.out.println(userVo);
 				}
 				
 			} else if (obj == btnCancel) {
