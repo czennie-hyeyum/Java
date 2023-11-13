@@ -11,14 +11,6 @@ public class UserVo {
 		super();
 	}
 	
-	public UserVo(String userId, String userPw, String userCheckPw, String userName, String userEmail) {
-		super();
-		this.userId = userId;
-		this.userPw = userPw;
-		this.userCheckPw = userCheckPw;
-		this.userPw = userPw;
-		this.userName = userName;
-	}
 	
 	public String getUserId() {
 		return userId;
@@ -64,9 +56,17 @@ public class UserVo {
 
 	@Override
 	 public String toString() {
-        return "UserVo [userId=" + userId + ", userPw=" + userPw + ", userCheckPw=" + userCheckPw
-                + ", userName=" + userName + ", userEmail=" + userEmail + "]";
+        return "UserVo [userId=" + userId + ", userPw=" + userPw + 
+                ", userName=" + userName + ", userEmail=" + userEmail + "]";
     }
+	
+	public UserVo(String userId, String userPw, String userName, String userEmail) {
+		super();
+		this.userId = userId;
+		this.userPw = userPw;
+		this.userName = userName;
+		this.userEmail = userEmail;
+	}
 	
 	
 }

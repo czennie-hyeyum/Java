@@ -4,8 +4,6 @@ import java.awt.Container;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -23,7 +21,7 @@ public class LoginFrame extends JFrame implements ActionListener {
 	JButton btnLogin = new JButton("로그인");
 	JButton btnAddUser = new JButton("사용자 등록");
 	private ReaisterDialog reaisterDialog = new ReaisterDialog(this, "입력/수정", true);
-	private List<UserVo> userList;
+	private UserDao userDao = UserDao.getInstance();
 	
 	public LoginFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -37,12 +35,7 @@ public class LoginFrame extends JFrame implements ActionListener {
 	
 	private void setUI() {
 		setIdOrPw();
-		setUserList();
 		setLayout(new GridLayout(3, 2, 10, 10));
-	}
-	
-	private void setUserList() {
-		userList = new ArrayList<>();
 	}
 	
 	private void setIdOrPw() {
@@ -68,20 +61,31 @@ public class LoginFrame extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object obj = e.getSource();
-		if (obj == btnLogin) {
-			String id = tfId.getText();
-			String pw = new String(tfPw.getPassword());
-			if (obj == tfId || obj == tfPw) {
-			} if(id == null || id.trim().equals("")) {
-				JOptionPane.showMessageDialog(LoginFrame.this, "아이디를 입력해 주세요.", "알림", JOptionPane.ERROR_MESSAGE);
-			} else if(pw == null || pw.trim().equals("")) {
-				JOptionPane.showMessageDialog(LoginFrame.this, "비밀번호를 입력해 주세요.", "알림", JOptionPane.ERROR_MESSAGE);
-			}
-		} else if (obj == btnAddUser) {
-			reaisterDialog.setReaisterDialog("사용자 등록");
-			reaisterDialog.setVisible(true);
-		}
 		
+        // 로그인 버튼
+        if (obj == btnLogin) {
+            String userId = tfId.getText();
+            String userPw = new String(tfPw.getPassword());
+            LoginDto loginDto = new LoginDto(userId, userPw);
+            UserVo userVo = userDao.login(loginDto);
+            if (userId.equals("") || userId.trim().equals("") || userPw.equals("") || userPw.trim().equals("")) {
+                JOptionPane.showMessageDialog(LoginFrame.this, "아이디/비밀번호를 입력해 주세요.", "알림", JOptionPane.ERROR_MESSAGE);
+            } else {
+                if (userVo == null) {
+                    JOptionPane.showMessageDialog(LoginFrame.this, "로그인 실패", "에러", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(LoginFrame.this, "로그인 성공", "알림", JOptionPane.INFORMATION_MESSAGE);
+                    new GuessNumFrame(userVo);
+                    this.dispose();
+                }
+            }
+
+            // 사용자 등록 버튼
+        } else if (obj == btnAddUser) {
+            reaisterDialog.setReaisterDialog("사용자 등록");
+            reaisterDialog.setVisible(true);
+        }
+	
 	}
 	
 	class ReaisterDialog extends JDialog implements ActionListener {
@@ -120,9 +124,6 @@ public class LoginFrame extends JFrame implements ActionListener {
 		
 		private void setReaisterDialog(String title) {
 			setTitle(title);
-			if (title.equals("사용자 등록")) {
-				
-			}
 		}
 
 		@Override
@@ -130,22 +131,25 @@ public class LoginFrame extends JFrame implements ActionListener {
 			Object obj = e.getSource();
 			String title = getTitle();
 			
-			if (obj == btnFinish) {
-				if(title.equals("사용자 등록")) {
-					UserVo userVo = new UserVo();
-					userVo.setUserId(tfuserId.getText());
-					userVo.setUserPw(new String(tfuserPw.getPassword()));
-					userVo.setUserCheckPw(new String(tfuserCheckPw.getPassword()));
-					userVo.setUserName(tfuserName.getText());
-					userVo.setUserEmail(tfuserEmail.getText());
-					userList.add(userVo);
-	                System.out.println(userVo);
-				}
+			if (obj == btnFinish && title.equals("사용자 등록")) {
+					UserVo userVo = new UserVo(tfuserId.getText(), 
+												new String(tfuserPw.getPassword()), 
+												tfuserName.getText(),
+												tfuserEmail.getText());
+					boolean result = userDao.addUser(userVo);
+	                System.out.println("add result: "+ result);
+	                
+	                if (result) {
+	                    JOptionPane.showMessageDialog(LoginFrame.this, "사용자 등록 완료", "완료", JOptionPane.INFORMATION_MESSAGE);
+	                    
+	                } else {
+	                    JOptionPane.showMessageDialog(LoginFrame.this, "사용자 등록 실패", "에러", JOptionPane.ERROR_MESSAGE);
+	                }
 				
 			} else if (obj == btnCancel) {
 				this.setVisible(false);
 			}
-			this.setVisible(false);
+			
 		}
 		
 	}

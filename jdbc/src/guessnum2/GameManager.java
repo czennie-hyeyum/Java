@@ -25,6 +25,7 @@ public class GameManager {
 	public int getCount() {
 		return count;
 	}
+	
 	public int judge(int userNum) {
 		count--;
 		if (userNum == targetNum) {
