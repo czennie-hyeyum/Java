@@ -75,7 +75,7 @@ public class LoginFrame extends JFrame implements ActionListener {
                     JOptionPane.showMessageDialog(LoginFrame.this, "로그인 실패", "에러", JOptionPane.ERROR_MESSAGE);
                 } else {
                     JOptionPane.showMessageDialog(LoginFrame.this, "로그인 성공", "알림", JOptionPane.INFORMATION_MESSAGE);
-                    new GuessNumFrame(userVo);
+	                    new GuessNumFrame(userVo);
                     this.dispose();
                 }
             }
@@ -141,13 +141,14 @@ public class LoginFrame extends JFrame implements ActionListener {
 	                
 	                if (result) {
 	                    JOptionPane.showMessageDialog(LoginFrame.this, "사용자 등록 완료", "완료", JOptionPane.INFORMATION_MESSAGE);
+	                    this.setVisible(false);
 	                    
 	                } else {
 	                    JOptionPane.showMessageDialog(LoginFrame.this, "사용자 등록 실패", "에러", JOptionPane.ERROR_MESSAGE);
 	                }
 				
 			} else if (obj == btnCancel) {
-				this.setVisible(false);
+				 this.setVisible(false);
 			}
 			
 		}

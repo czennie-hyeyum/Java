@@ -6,6 +6,8 @@ import java.awt.Container;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Date;
+import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -20,7 +22,7 @@ import javax.swing.JTextField;
 @SuppressWarnings("serial")
 public class GuessNumFrame extends JFrame implements ActionListener {
 	private static final int MIN_SCORE = 30000;
-	private RecordDialog recordDialog = new RecordDialog(this, "기록", true);
+	private RecordListDialog recordListDialog = new RecordListDialog(this, "기록 목록", true);
 	private ScoreDao scoreDao = ScoreDao.getInstance();
 	private GameManager manager = GameManager.getInstance();
 	private static final String START_MESSAGE 
@@ -41,7 +43,7 @@ public class GuessNumFrame extends JFrame implements ActionListener {
 	// South
 	private JPanel pnlSouth = new JPanel();
 	private JLabel lblCount = new JLabel("남은횟수:");
-	private JTextField tfCount = new JTextField(7);
+	private JTextField tfCount = new JTextField(4);
 	
 	private long startTime;	
 	private long endTime;
@@ -50,8 +52,9 @@ public class GuessNumFrame extends JFrame implements ActionListener {
 	
 	public GuessNumFrame(UserVo userVo) {
 		this.loginVo = userVo;
+		this.scoreDao = ScoreDao.getInstance();	
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setTitle("숫자맞추기 - " + loginVo.getUserId() + "(" + loginVo.getUserId() + ")");
+		setTitle("숫자맞추기 - " + loginVo.getUserId() + "(" + loginVo.getUserName() + ")");
 		setSize(700, 500);
 		setUI();
 		setListener();
@@ -199,29 +202,48 @@ public class GuessNumFrame extends JFrame implements ActionListener {
 		} else if (obj == btnNewGame) {
 			init();
 		} else if (obj == btnRecord) {
-			recordDialog.setVisible(true);
+			recordListDialog.getAll();
+			recordListDialog.setVisible(true);
 		}
 		
 	}
 	
-	class RecordDialog extends JDialog implements ActionListener {
-		private JTextArea record = new JTextArea();
+	class RecordListDialog extends JDialog {
+		JTextArea taList = new JTextArea();
 		
-		public RecordDialog(JFrame record, String title, boolean isModal) {
-			super(record, title, isModal);
-			setSize(400, 300);
-			setUI();
-			setLocationRelativeTo(record);
+		public RecordListDialog(JFrame parent, String title, boolean isModal) {
+			super(parent, title, isModal);
+			setSize(500, 400);
+			setLocationRelativeTo(parent);
+			taList.setFont(new Font("맑은 고딕", Font.BOLD, 20));
+			taList.setEditable(false);
+			add(new JScrollPane(taList), BorderLayout.CENTER);
 		}
 		
-		private void setUI() {
-			add(new JScrollPane(record), BorderLayout.CENTER);
-			record.setFont(new Font("맑은 고딕", Font.BOLD, 30));
-		}
-		
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			
+		private void getAll() {
+			Vector<ScoreUserVo> recordList = scoreDao.getAll();
+			for (int i = 0; i < recordList.size(); i++) {
+				ScoreUserVo scoreUserVo = recordList.get(i);
+				String userId = scoreUserVo.getUserId();
+				String userName = scoreUserVo.getUserName();
+				int score = scoreUserVo.getScore();
+				Date regdate = scoreUserVo.getRegdate();
+				String grade = scoreUserVo.getGrade();
+				
+				taList.append(String.valueOf(i + 1));
+				taList.append(". ");
+				taList.append(userId);
+				taList.append(" | ");
+				taList.append(userName);
+				taList.append(" | ");
+				taList.append(String.valueOf(score));
+				taList.append(" | ");
+				taList.append(regdate.toString());
+				taList.append(" | ");
+				taList.append(grade);
+				taList.append("\n");
+			}
+			 
 		}
 		
 	}

@@ -1,9 +1,11 @@
 package guessnum2;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Vector;
 
 public class ScoreDao {
 	private static ScoreDao instance = new ScoreDao();
@@ -66,8 +68,9 @@ public class ScoreDao {
 		ResultSet rs = null;
 		try {
 			conn = getConnection();
-			String sql = "SELECT MIN(SCORE) AS MIN_SCORE FROM TBL_SCORE";
+			String sql = "SELECT COALESCE(MIN(SCORE), ?) AS MIN_SCORE FROM TBL_SCORE";
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, MIN_SCORE);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				int minScore = rs.getInt("MIN_SCORE");
@@ -82,35 +85,36 @@ public class ScoreDao {
 	}
 	
 	// 읽기
-		/*
-		public Vector<ScoreVo> getAll() {
-			Connection conn = null;
-			PreparedStatement pstmt = null;
-			ResultSet rs = null;
-			try {
-				conn = getConnection();
-				StringBuffer sb = new StringBuffer();
-				sb.append("SELECT USERNAME, SCORE FROM TBL_SCORE");
-				pstmt = conn.prepareStatement(sb.toString());
-				rs = pstmt.executeQuery();
-				Vector<ScoreVo> vec = new Vector<>();
-				while (rs.next()) {
-					String username = rs.getString("USERNAME");
-					int score = rs.getInt("SCORE");
-					ScoreVo scoreVo = new ScoreVo();
-					scoreVo.setUsername(username);
-					scoreVo.setScore(score);
-					vec.add(scoreVo);
-				}
-				return vec;
-			} catch (Exception e) {
-				e.printStackTrace();
-			} finally {
-				closeAll(rs, pstmt, conn);
+	public Vector<ScoreUserVo> getAll() {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			conn = getConnection();
+			String sql = "SELECT U.USER_ID, U.USER_NAME, S.SCORE, S.REGDATE, G.GRADE"
+					+ "   FROM TBL_USER U, TBL_SCORE S, TBL_SCORE_GRADE G"
+					+ "   WHERE U.USER_ID = S.USER_ID"
+					+ "   AND S.SCORE BETWEEN G.LO_SCORE AND G.HI_SCORE"
+					+ "   ORDER BY S.SCORE ASC, U.USER_ID ASC";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			Vector<ScoreUserVo> vec = new Vector<>();
+			while (rs.next()) {
+				String userId = rs.getString("USER_ID");
+				String userName = rs.getString("USER_NAME");
+				int score = rs.getInt("SCORE");
+				Date regdate = rs.getDate("REGDATE");
+				String grade = rs.getString("GRADE");
+				ScoreUserVo scoreUserVo = new ScoreUserVo(userId, userName, score, regdate, grade);		
+				vec.add(scoreUserVo);
 			}
-			
-			return null;
+			return vec;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeAll(rs, pstmt, conn);
 		}
-		*/
-	
+		return null;
+	}
+
 } // class	
