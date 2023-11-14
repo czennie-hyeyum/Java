@@ -85,27 +85,31 @@ public class ScoreDao {
 	}
 	
 	// 읽기
-	public Vector<ScoreUserVo> getAll() {
+	public Vector<ScoreUserVo> getAll(RowNumDto rowNumDto) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
 			conn = getConnection();
-			String sql = "SELECT U.USER_ID, U.USER_NAME, S.SCORE, S.REGDATE, G.GRADE"
+			String sql = "SELECT * FROM (SELECT ROWNUM RN, A.* FROM (SELECT U.USER_ID, U.USER_NAME, S.SCORE, S.REGDATE, G.GRADE"
 					+ "   FROM TBL_USER U, TBL_SCORE S, TBL_SCORE_GRADE G"
 					+ "   WHERE U.USER_ID = S.USER_ID"
 					+ "   AND S.SCORE BETWEEN G.LO_SCORE AND G.HI_SCORE"
-					+ "   ORDER BY S.SCORE ASC, U.USER_ID ASC";
+					+ "   ORDER BY S.SCORE ASC, U.USER_ID ASC) A)"
+					+ "   WHERE RN BETWEEN ? AND ?";
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, rowNumDto.getStartRow());
+			pstmt.setInt(2, rowNumDto.getEndRow());
 			rs = pstmt.executeQuery();
 			Vector<ScoreUserVo> vec = new Vector<>();
 			while (rs.next()) {
+				int rn = rs.getInt("RN");
 				String userId = rs.getString("USER_ID");
 				String userName = rs.getString("USER_NAME");
 				int score = rs.getInt("SCORE");
 				Date regdate = rs.getDate("REGDATE");
 				String grade = rs.getString("GRADE");
-				ScoreUserVo scoreUserVo = new ScoreUserVo(userId, userName, score, regdate, grade);		
+				ScoreUserVo scoreUserVo = new ScoreUserVo(rn, userId, userName, score, regdate, grade);		
 				vec.add(scoreUserVo);
 			}
 			return vec;
@@ -116,5 +120,26 @@ public class ScoreDao {
 		}
 		return null;
 	}
-
+	
+	public int getCount() {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			conn = getConnection();
+			String sql = "SELECT COUNT(*) CNT FROM TBL_SCORE";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				int count = rs.getInt("CNT");
+				return count;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeAll(rs, pstmt, conn);
+		}
+		return 0;
+	}
+	
 } // class	

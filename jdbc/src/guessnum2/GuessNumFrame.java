@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.sql.Date;
 import java.util.Vector;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -28,6 +29,7 @@ public class GuessNumFrame extends JFrame implements ActionListener {
 	private static final String START_MESSAGE 
 		= "1~100 사이의 임의의 숫자를 맞춰보세요\n-----기회는 5번입니다.-----";
 	private Container con = getContentPane();
+	
 	// North
 	private JPanel pnlNorth = new JPanel();
 	private JTextField tfInput = new JTextField(5);
@@ -208,44 +210,130 @@ public class GuessNumFrame extends JFrame implements ActionListener {
 		
 	}
 	
-	class RecordListDialog extends JDialog {
+	class RecordListDialog extends JDialog implements ActionListener {
 		JTextArea taList = new JTextArea();
+		JButton btnLeft = new JButton(new ImageIcon("images/left.png"));
+		JButton btnRight = new JButton(new ImageIcon("images/right.png"));
+		JPanel pnlSequence = new JPanel();
+		JPanel pnlTaList = new JPanel();
+		JLabel lblPage = new JLabel("0/0");
+		int curPage = 1;
+		int totalPage;
+		ScoreDao scoreDao = ScoreDao.getInstance();
+		RowNumDto rowNumDto = new RowNumDto();
 		
 		public RecordListDialog(JFrame parent, String title, boolean isModal) {
 			super(parent, title, isModal);
 			setSize(500, 400);
 			setLocationRelativeTo(parent);
+			setUI();
+	        setPageNum();
+	        setListener();
+		}
+		
+		private void setUI() {
+			setCenter();
+			setSouth();
+		}
+		
+		private void setCenter() {
 			taList.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 			taList.setEditable(false);
-			add(new JScrollPane(taList), BorderLayout.CENTER);
+			pnlTaList.add(taList);
+			pnlTaList.setBackground(Color.WHITE);
+			add(pnlTaList, BorderLayout.CENTER);
+		}
+		
+		private void setSouth() {
+			pnlSequence.add(btnLeft);
+			pnlSequence.add(lblPage);
+			pnlSequence.add(btnRight);
+			pnlSequence.setBackground(Color.GREEN);
+			lblPage.setFont(new Font("맑은 고딕", Font.BOLD, 20));
+			add(pnlSequence, BorderLayout.SOUTH);
+		}
+		
+		private void setListener() {
+			btnLeft.addActionListener(this);
+			btnRight.addActionListener(this);
 		}
 		
 		private void getAll() {
-			Vector<ScoreUserVo> recordList = scoreDao.getAll();
-			for (int i = 0; i < recordList.size(); i++) {
-				ScoreUserVo scoreUserVo = recordList.get(i);
-				String userId = scoreUserVo.getUserId();
-				String userName = scoreUserVo.getUserName();
-				int score = scoreUserVo.getScore();
-				Date regdate = scoreUserVo.getRegdate();
-				String grade = scoreUserVo.getGrade();
-				
-				taList.append(String.valueOf(i + 1));
-				taList.append(". ");
-				taList.append(userId);
-				taList.append(" | ");
-				taList.append(userName);
-				taList.append(" | ");
-				taList.append(String.valueOf(score));
-				taList.append(" | ");
-				taList.append(regdate.toString());
-				taList.append(" | ");
-				taList.append(grade);
-				taList.append("\n");
+			taList.setText("");
+	        Vector<ScoreUserVo> recordList = scoreDao.getAll(rowNumDto);
+	        showRecordList(recordList);
+		}
+		private void setPageNum() {
+			rowNumDto.setStartEndRow(curPage);
+			int count = scoreDao.getCount();
+			totalPage = (int)Math.ceil((double)count / 10);
+			lblPage.setText(curPage + "/" + totalPage);
+		}
+			
+		private void showRecordList(Vector<ScoreUserVo> recordList) {
+			taList.setText("");
+				for (int i = 0; i < recordList.size(); i++) {
+					ScoreUserVo scoreUserVo = recordList.get(i);
+					int rn = scoreUserVo.getRn();
+					String userId = scoreUserVo.getUserId();
+					String userName = scoreUserVo.getUserName();
+					int score = scoreUserVo.getScore();
+					Date regdate = scoreUserVo.getRegdate();
+					String grade = scoreUserVo.getGrade();
+					
+					taList.append(String.valueOf(rn));
+					taList.append(". ");
+					taList.append(userId);
+					taList.append(" | ");
+					taList.append(userName);
+					taList.append(" | ");
+					taList.append(String.valueOf(score));
+					taList.append(" | ");
+					taList.append(regdate.toString());
+					taList.append(" | ");
+					taList.append(grade);
+					taList.append("\n");
+				}
 			}
-			 
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			Object obj = e.getSource();
+			
+			if (obj == btnLeft) {
+				curPage--;
+			} else if (obj == btnRight) {
+				curPage++;
+			}
+			
+			if (curPage == 1) {
+				btnLeft.setEnabled(false);
+			} else if (curPage > 1) {
+				btnLeft.setEnabled(true);
+			} else if (curPage < 1) {
+				curPage = 1;
+			}
+			
+			if (curPage == totalPage) {
+				btnRight.setEnabled(false);
+			} else if (curPage < totalPage) {
+				btnRight.setEnabled(true);
+			}
+			if (curPage > totalPage) {
+				curPage = totalPage;
+			}
+			
+			rowNumDto.setStartEndRow(curPage);
+			
+			getAll();
+			setPageNum();
+			
+			Vector<ScoreUserVo> recordList = scoreDao.getAll(rowNumDto);
+		    showRecordList(recordList);
+			System.out.println(rowNumDto);
+			
 		}
 		
 	}
 
-}
+} // class
