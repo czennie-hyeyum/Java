@@ -207,20 +207,19 @@ public class GuessNumFrame extends JFrame implements ActionListener {
 			recordListDialog.getAll();
 			recordListDialog.setVisible(true);
 		}
-		
 	}
 	
 	class RecordListDialog extends JDialog implements ActionListener {
-		JTextArea taList = new JTextArea();
-		JButton btnLeft = new JButton(new ImageIcon("images/left.png"));
-		JButton btnRight = new JButton(new ImageIcon("images/right.png"));
-		JPanel pnlSequence = new JPanel();
-		JPanel pnlTaList = new JPanel();
-		JLabel lblPage = new JLabel("0/0");
+		private JTextArea taList = new JTextArea();
+		private JButton btnLeft = new JButton(new ImageIcon("images/left.png"));
+		private JButton btnRight = new JButton(new ImageIcon("images/right.png"));
+		private JPanel pnlSequence = new JPanel();
+		private JPanel pnlTaList = new JPanel();
+		private JLabel lblPage = new JLabel("0/0");
+		private ScoreDao scoreDao = ScoreDao.getInstance();
+		private RowNumDto rowNumDto = new RowNumDto();
 		int curPage = 1;
 		int totalPage;
-		ScoreDao scoreDao = ScoreDao.getInstance();
-		RowNumDto rowNumDto = new RowNumDto();
 		
 		public RecordListDialog(JFrame parent, String title, boolean isModal) {
 			super(parent, title, isModal);

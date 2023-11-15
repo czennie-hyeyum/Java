@@ -3,21 +3,33 @@ package guessnum2;
 public class RowNumDto {
 	private Integer startRow = 1;
 	private Integer endRow = 10;
-	private Integer rn;
-	private boolean isPrev;
-	private boolean isNext;
+	private boolean isPrev = false;
+	private boolean isNext = false;
 	
+	public boolean isPrev() {
+		return isPrev;
+	}
+
+	public void setPrev(boolean isPrev) {
+		this.isPrev = isPrev;
+	}
+
+	public boolean isNext() {
+		return isNext;
+	}
+
+	public void setNext(boolean isNext) {
+		this.isNext = isNext;
+	}
+
 	public RowNumDto() {
 		super();
 	}
 
-	public RowNumDto(Integer startRow, Integer endRow, Integer rn, boolean isPrev, boolean isNext) {
+	public RowNumDto(Integer startRow, Integer endRow) {
 		super();
 		this.startRow = startRow;
 		this.endRow = endRow;
-		this.rn = rn;
-		this.isPrev = isPrev;
-		this.isNext = isNext;
 	}
 
 	public Integer getStartRow() {
@@ -41,35 +53,10 @@ public class RowNumDto {
 		this.startRow = this.endRow - 9;
 	}
 	
-
-	public Integer getRn() {
-		return rn;
-	}
-
-	public void setRn(Integer rn) {
-		this.rn = rn;
-	}
-
-	public boolean isPrev() {
-		return isPrev;
-	}
-
-	public void setPrev(boolean isPrev) {
-		this.isPrev = isPrev;
-	}
-
-	public boolean isNext() {
-		return isNext;
-	}
-
-	public void setNext(boolean isNext) {
-		this.isNext = isNext;
-	}
-
+	
 	@Override
 	public String toString() {
-		return "RowNumDto [startRow=" + startRow + ", endRow=" + endRow + ", rn=" + rn + ", isPrev=" + isPrev
-				+ ", isNext=" + isNext + "]";
+		return "RowNumDto [startRow=" + startRow + ", endRow=" + endRow + "]";
 	}
 	
 }

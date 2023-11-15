@@ -1,4 +1,4 @@
-package guessnum2;
+package sql_exam;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,9 +8,8 @@ import java.sql.ResultSet;
 public abstract class BasicAbstractDao {
 	private static final String DRIVER_NAME = "oracle.jdbc.driver.OracleDriver";
 	private static final String URL = "jdbc:oracle:thin:@localhost:1521:xe";
-	private static final String ID = "USER01";
-	private static final String PW = "1234";
-	protected static final int MIN_SCORE = 30000;
+	private static final String ID = "SQL_EXAM";
+	private static final String PW = "EXAM5678";
 	
 	protected Connection getConnection() {
 		try {
