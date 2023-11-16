@@ -433,13 +433,11 @@ public class PhoneBookFrame extends JFrame implements ActionListener {
 				boolean result = false;
 				if (title.equals("입력")) {
 					PhoneInfo info = this.makePhoneInfo();
-					System.out.println(info);
 					result = dao.addInfo(info);
-					System.out.println("입력 result:" + result);
+					
 				} else if (title.equals("수정")) {
 					PhoneInfo info = this.makePhoneInfo();
-					System.out.println(info);
-					result = dao.modify(info);
+					result = book.modify(info);
 				}
 				
 				if (result) {
