@@ -124,7 +124,7 @@ public class SqlExamFrame extends JFrame implements ActionListener {
         } else if (obj == btnModify) {
             String studentNum = JOptionPane.showInputDialog(this, "학번을 입력하세요.", "알림", JOptionPane.INFORMATION_MESSAGE);
             if (studentNum != null && !studentNum.equals("")) {
-            	String keyword = studentVo.getSno;
+            	String keyword = studentDao.modify(studentNum);
                 inputDialog.setVisible(true);
                 loadStudentData(); 
                 Vector<StudentVo> vec = studentDao.getInfo();
